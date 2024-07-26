@@ -6,6 +6,7 @@ import com.springproj.carapp1.service.CarService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -24,13 +25,13 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(CarController.class)
+
 public class CarControllerTest {
 
-    @Autowired
+
     private MockMvc mockMvc;
 
-    @MockBean
+    @Mock
     private CarService carService;
 
     @InjectMocks
@@ -51,8 +52,7 @@ public class CarControllerTest {
 
         mockMvc.perform(get("/cars/catalog"))
                 .andExpect(status().isOk());
-//                .andExpect(jsonPath("$", hasSize(1)))
-//                .andExpect(jsonPath("$[0].brand", is("VW")));
+
     }
 
     @Test
