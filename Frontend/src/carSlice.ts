@@ -87,7 +87,7 @@ export const deleteCar = createAsyncThunk<number, number>('deleteCar', async (id
     if (!token) {
       throw new Error('No token found in local storage');
     }
-    const response = await axios.post(`http://localhost:8080/cars/delete/${id}`,{
+    const response = await axios.delete(`http://localhost:8080/cars/delete/${id}`,{
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',

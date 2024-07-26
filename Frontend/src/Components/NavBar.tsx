@@ -1,11 +1,18 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink ,useNavigate} from "react-router-dom";
 
 interface NavBarProps{
     role:String;
 }
 
 const NavBar:React.FC<NavBarProps>=({role})=>{
+    const navigate=useNavigate();
+
+    const handleLogout=()=>{
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        navigate('/signin');
+    }
     return(
         <nav className="navbar">
             <ul className="navbar_list">
@@ -29,7 +36,10 @@ const NavBar:React.FC<NavBarProps>=({role})=>{
                     <NavLink to='/search/:id'>Search here</NavLink>
                 </li>
                 <li>
-                <NavLink to="/">Logout</NavLink>
+                    <button onClick={handleLogout} >
+                        Logout
+                    </button>
+                
                 </li>
             </ul>
         </nav>
